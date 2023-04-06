@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body {
+            background: linear-gradient(0deg, rgba(34, 193, 195, 1)0%, rgba(121, 32, 153, 1)86%);
+            background-attachment: fixed;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        form {
+            width: 400px;
+            margin: 20vh auto 0 auto;
+            background-color: rgba(235, 250, 254, 0.925);
+            border-radius: 5px;
+            padding: 30px;
+        }
+
+        .button {
+            background-color: blueviolet;
+            color: aliceblue;
+            border: 1px solid rebeccapurple;
+            border-radius: 5px;
+            padding: 10px;
+
+            cursor: pointer;
+            font-size: 20px;
+            width: 100%;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            border-radius: 5px;
+            font-size: 20px;
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid rgb(110, 209, 254);
+
+        }
+
+        .input-group input:focus {
+            outline: 0;
+        }
+
+        .input-group :hover {
+            color: rgb(96, 42, 233);
+        }
+
+        h1 {
+            text-align: center;
+            color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        
+        var c = 0;
+        function Validate() {
+            var fname = document.f1.fname.value;
+            var lname = document.f1.lname.value;
+            var ph = document.f1.pn.value;
+            var age = document.f1.age.value;
+            var email = document.f1.email.value;
+            var rn = document.f1.rn.value;
+            var drop = document.f1.drop.value;
+            var payment = document.f1.payment.value;
+            var dec = document.f1.dec.value;
+
+            if (fname == "") {
+                alert("first name must be filled");
+                c++;
+                return false;
+            }
+
+            if (lname == "") {
+                alert("last name must be filled");
+                c++;
+                return false;
+            }
+            if (fname == lname) {
+                alert("1St name and last name must be different");
+                c++;
+                return false;
+            }
+            if (age == "") {
+                alert("age must be filled");
+                c++;
+                return false;
+            }
+            if (age <= 0) {
+                alert("correct age must be filled");
+                c++;
+                return false;
+            }
+            if (email == "") {
+                alert("email must be filled");
+                c++;
+                return false;
+            }
+            if (rn == "") {
+                alert("Roll number must be filled");
+                c++;
+                return false;
+            }
+            if (ph == "") {
+                alert("Phone number must be filled");
+                c++;
+                return false;
+            }
+            if (ph.length > 10 || ph.length < 1) {
+                alert("Valid phone no must be filled");
+                c++;
+                return false;
+            }
+
+            if (payment == "") {
+                alert("payment SS  must be added");
+                c++;
+                return false;
+            }
+            if (drop == "") {
+                alert("Course must be filled");
+                c++;
+                return false;
+            }
+            if (c == 0) {
+                alert("Form submitted successfully");
+                return true;
+            }
+
+        }
+
+
+    </script>
+    <form name="f1" onsubmit="return Validate()">
+        <h1>Reigter</h1>
+        <div class="input-group">
+            <label>First name:</label>
+            <input type="text" required placeholder="Enter first name" name="fname" pattern=[a-zA-Z]{3,}
+                onclick="Validate()"><br><br>
+        </div>
+        <div class="input-group">
+            <label>Last name:</label>
+            <input type="text" required placeholder="Enter last name" name="lname" pattern=[a-zA-Z]{2,} required
+                onclick="Validate()"><br><br>
+        </div>
+        <div class="input-group">
+            <labelt>Age</label>
+                <input type="number" required name="age" placeholder="Enter your age" required onclick="Validate()"><br>
+                <br>
+        </div>
+        <div class="input-group">
+            <label>Email:</label>
+            <input type="" required placeholder="Enter email id" name="email"
+                pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" required onclick="Validate()"><br><br>
+        </div>
+        <div class="input-group">
+            <label>Roll no:</label>
+            <input type="" required placeholder="Enter valid Rollno" name="rn"
+                pattern="[2]{1}[1]{1}[I]{1}[T]{1}[R]{1}[0-9]{3,}" required onclick="Validate()"><br><br>
+        </div>
+        <div class="input-group">
+            <label>Phone number:</label>
+            <input type="text" value="+91" size="1" disabled>
+            <input type="tel" required placeholder="01234-56789" name="pn" required onclick="Validate()"><br><br>
+        </div>
+        <div class="input-group">
+            <label>COURSES</label>
+            <select name="drop">
+                <option value="0"></option>
+                <option value="1">pencil sketch</option>
+                <option value="2">color sketch</option>
+                <option value="3">digital art</option>
+                <option value="4">Photography</option>
+            </select>
+            <br><br>
+        </div>
+
+        <div class="input-group">
+            <label>Please select your favourite art material</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="option1">
+                <label class="form-check-label">
+                    Pencil Sketch
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="option1">
+                <label class="form-check-label">
+                    ColorSKetch
+                </label>
+            </div>
+            <div class="form-check disabled">
+                <input class="form-check-input" type="radio" name="exampleRadios" value="option3">
+                <label class="form-check-label">
+                    Digital Art
+                </label>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="input-group">
+            <label>PAYMENT</label>
+            <input type="file" name="payment">
+
+            <br>
+            <br>
+        </div>
+        <input type="checkbox" name="dec" onclick="Validate()">Agree terms and condition</input><br><br>
+        </div>
+        <br>
+        <br>
+        <button type="submit" class="button" name="button" onclick="Validate()">Submit</button>
+    </form>
+</body>
+
+</html>
+<!-- <input type="submit" name="email_submit" value="submit" onclick="if(!this.form.checkbox.checked){alert('You must agree to the terms first.');return false}"  /> -->

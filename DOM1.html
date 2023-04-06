@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Art Gallery</title>
+    <style>
+        body {
+            border: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: black;
+            color: yellow;
+            padding: 150px;
+            text-align: center;
+            font-size: 50px;
+            text-transform: uppercase;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 50fr);
+            grid-gap: 30px;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        .item {
+            background-color: yellow;
+            padding: 50px;
+            text-align: center;
+            font-size: 24px;
+            cursor: pointer;
+            justify-content: center;
+        }
+
+        #text-area {
+            display: none;
+            margin: 20px;
+            padding: 10px;
+            background-color: black;
+            font-size: 70px;
+            color: yellow;
+            border: none;
+            cursor: pointer;
+            border-color: rgb(248, 5, 5);
+        }
+
+        #buy-button {
+            display: none;
+            margin: 20px;
+            font-weight: 200;
+            font-size: 50px;
+            padding: 50px;
+            background-color: black;
+            color: yellow;
+            border: none;
+            cursor: pointer;
+            border-color: rgb(240, 244, 14);
+            border-radius: 50px;
+        }
+
+        #total-price {
+            display: none;
+            margin: 20px;
+            font-size: 70px;
+            font-weight: bold;
+            text-align: center;
+            background-color: black;
+            color: yellow;
+        }
+
+        .img {
+            padding: 5px;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Art Gallery</h1>
+    </div>
+    <div class="grid">
+        <div class="item">
+            <img src="./rs_drawz_1671347624634641.jpg" alt="Painting 1">
+        </div>
+        <div class="item">
+            <img src="./rs_drawz_1671347624634641.jpg" alt="Painting 2">
+        </div>
+        <div class="item">
+            <img src="./rs_drawz_1671347624634641.jpg" alt="Painting 3">
+        </div>
+        <div class="item">
+            <img src="./rs_drawz_1671347624634641.jpg" alt="Painting 4">
+        </div>
+        <div class="item">
+            <img src="./rs_drawz_1671347624634641.jpg" alt="Painting 5">
+        </div>
+        <div class="item">
+            <img src="rs_drawz_1671347624634641.jpg" alt="Painting 6">
+        </div>
+    </div>
+    <div id="text-area">
+        <h2>Selected Paintings</h2>
+    </div>>
+    <button id="buy-button">Buy</button>
+    <div id="total-price"></div>
+    <script id="rs">
+        // Get the grid and text area elements
+        const grid = document.querySelector(".grid");
+        const textArea = document.querySelector("#text-area");
+
+        // Create an array of paintings
+        const paintings = [
+            { name: "Painting 1", price: 50 },
+            { name: "Painting 2", price: 80 },
+            { name: "Painting 3", price: 120 },
+            { name: "Painting 4", price: 70 },
+            { name: "Painting 5", price: 90 },
+            { name: "Painting 6", price: 100 },
+            { name: "Painting 7", price: 60 },
+            { name: "Painting 8", price: 110 },
+            { name: "Painting 9", price: 75 }
+        ];
+
+        // Add event listeners to the grid items
+        grid.querySelectorAll(".item").forEach((item, index) => {
+            item.addEventListener("click", () => {
+                // Create a new text field with the painting name
+                const nameInput = document.createElement("input");
+                nameInput.type = "text";
+                nameInput.setAttribute("style", "width:300px;height:100px;font-size:50px;");
+                nameInput.value = paintings[index].name;
+                nameInput.innerHTML = "<br></br>";
+
+
+                // Create a new text field with the painting price
+                const priceInput = document.createElement("input");
+                priceInput.type = "number";
+                priceInput.setAttribute("style", "width:300px;height:100px;font-size:50px;");
+                priceInput.value = paintings[index].price;
+
+
+                // Create a new text field with the number of copies
+                const copiesInput = document.createElement("input");
+                copiesInput.type = "number";
+                copiesInput.setAttribute("style", "width:300px;height:100px;font-size:50px;");
+                copiesInput.value = 1;
+                copiesInput.innerHTML = "<br></br>";
+
+                // Add the new text fields to the text area
+                textArea.appendChild(nameInput);
+                textArea.appendChild(priceInput);
+                textArea.appendChild(copiesInput);
+                textArea.setAttribute("style","<br>;");
+
+                // Show the text area and buy button
+                textArea.style.display = "block";
+                document.querySelector("#buy-button").style.display = "block";//for to show from hidden to
+            });
+        });
+
+        // Add event listener to the buy button
+        document.querySelector("#buy-button").addEventListener("click", () => {
+            let totalPrice = 0;
+
+            // Calculate the total price
+            textArea.querySelectorAll("input").forEach((input, index) => {
+                if (index % 3 == 2) {
+                    const copies = parseInt(input.value);
+                    const price = parseInt(textArea.querySelectorAll("input")[index - 1].value);
+                    totalPrice += copies * price;
+                }
+            });
+
+            // Display the total price
+            document.querySelector("#total-price").textContent = "Total Price: $" + totalPrice;
+            document.querySelector("#total-price").style.display = "block";
+        });
+    </script>
+
+</body>
+
+</html>
